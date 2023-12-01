@@ -28,10 +28,10 @@
 ;; Another version of part 2
 
 (loop for line in (uiop:read-file-lines "01.input")
-      sum (let* ((nums '("zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
+      sum (let* ((nums '("one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "1" "2" "3" "4" "5" "6" "7" "8" "9"))
                  (first (loop for n in nums minimize (or (search n line) 999)))
                  (last (loop for n in nums maximize (or (search n line :from-end t) -1))))
             (+ (* 10 (loop for index from 0 for string in nums
-                           when (str:starts-with? string (subseq line first)) return (mod index 10)))
+                           when (str:starts-with? string (subseq line first)) return (1+ (mod index 9))))
                (loop for index from 0 for string in nums
-                     when (str:starts-with? string (subseq line last)) return (mod index 10)))))
+                     when (str:starts-with? string (subseq line last)) return (1+ (mod index 9))))))
