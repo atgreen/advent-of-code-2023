@@ -19,5 +19,4 @@
                                                              when (str:starts-with? (car n) line)
                                                                return (and (setf line (subseq line 1)) (cdr n)))
                                                        (and (let ((c (subseq line 0 1))) (setf line (subseq line 1)) c))))))
-      do (print nline)
       sum (parse-integer (format nil "~A~A" (uiop:first-char nline) (uiop:last-char nline))))
