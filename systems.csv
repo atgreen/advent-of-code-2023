@@ -8,3 +8,4 @@ flexi-streams-test, ghcr.io/ocicl/flexi-streams@sha256:2eb7271c30799a51bb3720ca3
 trivial-gray-streams, ghcr.io/ocicl/trivial-gray-streams@sha256:50bff0f1fe77fe2b297a4c4b4b86fa40cadd98dabe93616314cbf9a054ac150a, trivial-gray-streams-20230809-f873865/trivial-gray-streams.asd
 trivial-gray-streams-test, ghcr.io/ocicl/trivial-gray-streams@sha256:50bff0f1fe77fe2b297a4c4b4b86fa40cadd98dabe93616314cbf9a054ac150a, trivial-gray-streams-20230809-f873865/trivial-gray-streams-test.asd
 cl-change-case, ghcr.io/ocicl/cl-change-case@sha256:67069ab13c96a36125bca952e62a27f5aba36cf8cc696d7ae71e715643b23b9f, cl-change-case-0.2.1/cl-change-case.asd
+parseq, ghcr.io/ocicl/parseq@sha256:e3dc1217a21dc9af1682bd29b3efabad8285691d3d1db3a6dfc1805843da8035, parseq-20230808-9d5e44f/parseq.asd
