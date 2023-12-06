@@ -6,8 +6,7 @@
   (reduce '* (loop for time in times
                    for record in records
                    collect (loop for x from 1 below time
-                                 when (> (* x (- time x)) record)
-                                   sum 1))))
+                                 count (> (* x (- time x)) record)))))
 
 ;; Part 2 - don't even bother parsing
 (loop for x from 1 below 61709066
