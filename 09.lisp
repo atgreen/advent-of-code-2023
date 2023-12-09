@@ -7,8 +7,8 @@
                        (if (every #'zerop dnums)
                            0
                            (+ (car (last dnums)) (process dnums))))))
-           (let ((nline (mapcar #'parse-integer line)))
-             (+ (car (last nline)) (process nline)))))
+            (let ((nline (mapcar #'parse-integer line)))
+              (+ (car (last nline)) (process nline)))))
 
 ;; Part 2
 
@@ -19,5 +19,5 @@
                        (if (every #'zerop dnums)
                            0
                            (- (car dnums) (process dnums))))))
-           (let ((nline (mapcar #'parse-integer line)))
-             (- (car nline) (process nline)))))
+            (let ((nline (mapcar #'parse-integer line)))
+              (- (car nline) (process nline)))))
