@@ -28,11 +28,8 @@
   ;; Split it back into lines
   (let ((glines (loop for i from 0 below (* 140 140) by 140
                       collect (subseq ogrid i (+ i 140))))
-        (xlines (loop for i from 0 below (* 140 140) by 140
-                      collect (subseq grid i (+ i 140))))
         (count 0))
     (loop for line in glines
-          for xline in xlines
           do (let ((crossings 0))
                (loop for c across (cl-ppcre:regex-replace-all
                                "F-*J"
