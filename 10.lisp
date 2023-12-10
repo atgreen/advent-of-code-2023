@@ -19,29 +19,26 @@
           until (eq pos start-pos)
           do (progn (incf steps)
                     (setf pos (find-next pos))))
-    (print (/ steps 2)))) ;; Part 1
+    (print (/ steps 2))) ;; Part 1
 
-#|  PART 2 NOT WORKING :(
-(let ((count 0))
-    (loop for i from 0 below 140
-          do (setf inout 0)
-          do (loop for j from 0 below 140
-                   do (let ((pipe (aref ogrid (+ (* 140 i) j)))
-                            (seen (aref grid (+ (* 140 i) j))))
-                        (if (not (eq #\X seen))
-                            (when (> (mod inout 2) 0)
-                              (progn
-                                (setf (aref grid (+ (* 140 i) j)) #\*)
-                                (incf count)))
-                            (progn
-                              (print pipe)
-                              (cond
-                                ((eq pipe #\|) (incf inout))
-                                ((or (eq pipe #\J) (eq pipe #\F)) (incf inout 0.5))
-                                ((or (eq pipe #\L) (eq pipe #\S) (eq pipe #\7)) (incf inout -0.5))))))))
-    (loop for i from 0 below 140
-          do (progn
-               (format t "~A~%" (subseq grid 0 140))
-               (setf grid (subseq grid 140))))
-    (print count)))
-#|
+  ;; Clean out the original grid
+  (loop for i from 0 below (length grid)
+        unless (eq #\X (aref grid i))
+          do (setf (aref ogrid i) #\Space))
+
+  ;; Hack
+  (setf (aref ogrid (position #\S ogrid)) #\7)
+
+  ;; Split it back into lines
+  (let ((glines (loop for i from 0 below (* 140 140) by 140
+                      collect (subseq ogrid i (+ i 140))))
+        (count 0))
+    (loop for line in glines
+          do (let ((crossings 0))
+               (loop for c across (cl-ppcre:regex-replace-all
+                               "F-*J"
+                               (cl-ppcre:regex-replace-all "L-*7" line "|") "|")
+                     do (cond ((and (eq c #\Space) (oddp crossings))
+                               (incf count))
+                              ((eq c #\|) (incf crossings))))))
+    count))
