@@ -10,17 +10,14 @@
                 (#\F (-1 -140))
                 (#\S (-1 1 -140 140)))))
   (flet ((find-next (pos)
-           (format t "Finding next: ~A ~A~%" pos (aref grid pos))
            (loop for dir in (mapcar #'- (cadr (assoc (aref grid pos) moves)))
                  for next-pipe = (aref grid (+ pos dir))
-                 do (format t "   checking ~A to ~A~%" dir next-pipe)
                  when (and (position dir (cadr (assoc next-pipe moves)))
                            (setf (aref grid pos) #\X))
                    return (+ pos dir))))
     (loop with pos = (+ start-pos 140)
           until (eq pos start-pos)
           do (progn (incf steps)
-                    (format t "~A: ~A~%" pos (aref grid pos))
                     (setf pos (find-next pos))))
     (print (/ steps 2)))) ;; Part 1
 
